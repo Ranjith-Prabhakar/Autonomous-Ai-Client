@@ -1,0 +1,25 @@
+.search-container{
+  width: 500px;
+  height: 100px;
+}
+
+.search-input{
+  height: 30px;
+  width: 50%;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
+  font-family: Poppins;
+}
+
+.search-button{
+  height: 30px;
+  width: 90px;
+  border-radius: 5px;
+  border: none;
+  font: bold;
+  font-family: Poppins;
+  color: white;
+  background-color: rgb(1,28,47);
+  cursor: pointer;
+}
