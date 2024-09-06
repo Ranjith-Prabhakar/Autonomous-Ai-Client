@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./style.css";
 import { fetchUser } from "../../api/api";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
-import { loadPrimaryUser, TUser } from "../../redux/features/user/userSlice";
+import { useDispatch } from "react-redux";
+import { loadPrimaryUser } from "../../redux/features/user/userSlice";
+import { TSelector } from "../../types/types";
 
-const SearchComponent = () => {
+const SearchComponent = ({ setSelctor }: TSelector) => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const primaryUser = useSelector(
-    (state: { user: TUser }) => state.user.primaryUser
-  );
 
   // handler for input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,15 +26,22 @@ const SearchComponent = () => {
 
       if (user === "Not found") {
         toast.error("User not found with this name");
-      } else if (user && typeof user !== "string" && user.data) {
+      } else if (user && typeof user !== "string") {
         // Dispatch only if user is an Axios response and has data
-        console.log("first", user.data);
-        dispatch(loadPrimaryUser(user.data));
+        dispatch(loadPrimaryUser(user));
+        setSelctor(2);
       } else {
         toast.error("An unexpected error occurred while fetching the user");
       }
     } catch (error) {
       toast.error("An error occurred. Please try again.");
+    }
+  };
+
+  // searching handler for enter key
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
     }
   };
 
@@ -46,6 +51,7 @@ const SearchComponent = () => {
         className="search-input"
         value={name}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
       <button className="search-button" onClick={handleSearch}>
         Search

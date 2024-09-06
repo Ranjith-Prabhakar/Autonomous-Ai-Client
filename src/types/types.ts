@@ -35,3 +35,8 @@ export interface GitHubUser {
 }
 
 export type TLocalStorageGitHubUsers = Record<string, GitHubUser>;
+
+export type TSelector = {
+  selector?: number;
+  setSelctor: React.Dispatch<React.SetStateAction<number>>;
+};

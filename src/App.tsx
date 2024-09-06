@@ -4,14 +4,23 @@ import ErrorBoundary from "./components/errorBoundry/ErrorBoundry";
 import SearchComponent from "./components/search/SearchComponent";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import PrimaryUser from "./components/primaryUser";
+import { useState } from "react";
 
 const App = () => {
+  const [selector, setSelctor] = useState(1);
   return (
     <div className="app-container flex justify-center item-center ">
       <Provider store={store}>
-        <ErrorBoundary>
-          <SearchComponent />
-        </ErrorBoundary>
+        {selector === 1 ? (
+          <ErrorBoundary>
+            <SearchComponent setSelctor={setSelctor} />
+          </ErrorBoundary>
+        ) : selector === 2 ? (
+          <ErrorBoundary>
+            <PrimaryUser selector={selector} setSelctor={setSelctor} />
+          </ErrorBoundary>
+        ) : null}
       </Provider>
       <Toaster />
     </div>

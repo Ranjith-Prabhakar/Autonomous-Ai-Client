@@ -1,6 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import catchAxiosError from "../utils/error/errorHandler";
-import { getUserFromLocalStorage } from "../utils/localStorage/LocalStorageHandler";
+import {
+  getUserFromLocalStorage,
+  setUserToLocalStorage,
+} from "../utils/localStorage/LocalStorageHandler";
 let BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export async function fetchUser(
@@ -8,11 +11,11 @@ export async function fetchUser(
 ): Promise<AxiosResponse | string | null> {
   try {
     let user = getUserFromLocalStorage(userName);
-
     // Handle undefined case
     if (!user) {
       // Fetch from GitHub API if not in local storage
       const response = await axios.get(`${BASE_URL}/users/${userName}`);
+      setUserToLocalStorage(response.data);
       return response; // response will be AxiosResponse
     }
 
@@ -21,3 +24,5 @@ export async function fetchUser(
     return catchAxiosError(error);
   }
 }
+
+
