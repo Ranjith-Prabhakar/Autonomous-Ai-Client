@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IGitHubRepository } from "../../../types/repoType";
+import { TRepo } from "../../../types/repoType";
 
 export type TUserRepo = {
-  repo: IGitHubRepository;
+  repo: TRepo;
 };
 
 const initialState: TUserRepo = {
-  repo: {
+  repo:[ {
     id: 0,
     node_id: "",
     name: "",
@@ -105,7 +105,7 @@ const initialState: TUserRepo = {
     open_issues: 0,
     watchers: 0,
     default_branch: "",
-  },
+  }],
 };
 
 const repoSlice = createSlice({

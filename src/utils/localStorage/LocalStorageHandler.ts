@@ -93,12 +93,14 @@ export function setUserFollowersToLocalStorage(
   if (result) {
     // console.log("inside setUserRepoToLocalStorage if", result);
     let parsedFollowers = JSON.parse(result as string);
-    parsedFollowers[userName] = parsedFollowers;
+    // parsedFollowers[userName] = parsedFollowers;
+      let newParsedRepo = { ...parsedFollowers, [userName]: followers };
     console.log(
       "setUserFollowersToLocalStorage --if -- parsedFollowers",
-      parsedFollowers
+      newParsedRepo
     );
-    localStorage.setItem("followersList", JSON.stringify(parsedFollowers));
+    localStorage.setItem("followersList", JSON.stringify(newParsedRepo));
+    return newParsedRepo;
   } else {
     let parsedFollowers = {
       [userName]: followers,
@@ -111,3 +113,7 @@ export function setUserFollowersToLocalStorage(
     localStorage.setItem("followersList", JSON.stringify(parsedFollowers));
   }
 }
+
+// --------------------------------------------------------------------------------------------------------
+
+

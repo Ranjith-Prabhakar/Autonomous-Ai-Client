@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import useGetPrimaryUser from "../../hooks/useGetPrimaryUser";
 import { fetchRepo } from "../../api/api";
-import { IGitHubRepository, TRepo } from "../../types/repoType";
+import { IGitHubRepository } from "../../types/repoType";
 import RepoViewMore from "./RepoViewMore";
 import useGetRepositories from "../../hooks/useGetRepositories";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ import { loadRepo } from "../../redux/features/repository/repositorySlice";
 const Repo = () => {
   const primaryUser = useGetPrimaryUser();
   const repo = useGetRepositories();
-  const [repoList, setRepoList] = useState<TRepo>();
+  // const [repoList, setRepoList] = useState<TRepo>();
   const [visible, setVisible] = useState(false);
   const [viewRepo, setViewRepo] = useState<IGitHubRepository>();
   const dispatch = useDispatch();
@@ -22,11 +22,16 @@ const Repo = () => {
         primaryUser.login as string,
         primaryUser.repos_url as string
       );
+      console.log('xxxxxxxxxxxxxxx',repo)
       dispatch(loadRepo(repo));
-      setRepoList(repo as TRepo);
     }
     fetchingRepo();
-  }, [primaryUser]);
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("reeeeeeeee", repo);
+  //   setRepoList(repo);
+  // }, [repo]);
 
   return (
     <>
@@ -38,8 +43,8 @@ const Repo = () => {
             <th>Visit</th>
           </thead>
           <tbody>
-            {repoList &&
-              repoList.map((item, index) => (
+            {repo &&
+              repo.map((item, index) => (
                 <tr key={item.name}>
                   <td>{index + 1}</td>
                   <td>{item.name}</td>
