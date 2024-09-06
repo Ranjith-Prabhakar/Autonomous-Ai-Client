@@ -6,7 +6,7 @@ type Props = {
 const ProfileComponent = ({ active, setActive }: Props) => {
   const primaryUser = useGetPrimaryUser();
   return (
-    <div className="glass-effect h-70vh w-full rounded-10 flex px-20  pt-20 flex flex-col">
+    <div className="glass-effect h-62vh w-full rounded-10 flex px-20  pt-20 flex flex-col">
       <div className="flex gap-20 text-white font-800 text-20">
         <img
           src={primaryUser.avatar_url}

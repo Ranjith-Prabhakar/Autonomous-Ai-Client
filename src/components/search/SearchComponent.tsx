@@ -46,16 +46,19 @@ const SearchComponent = ({ setSelctor }: TSelector) => {
   };
 
   return (
-    <div className="glass-effect search-container gap-10 rounded-10 flex justify-center item-center">
-      <input
-        className="search-input"
-        value={name}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-      />
-      <button className="search-button" onClick={handleSearch}>
-        Search
-      </button>
+    <div className="glass-effect search-container w-full h-150 py-20 gap-10 rounded-10 flex flex-col justify-start item-center">
+      <h1 className="text-white">Find User</h1>
+      <div className="flex justify-center item-center gap-10 w-full  ">
+        <input
+          className="search-input"
+          value={name}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+        <button className="search-button" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
     </div>
   );
 };
