@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { fetchUser } from "../../api/api";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { loadPrimaryUser, TUser } from "../../redux/features/user/userSlice";
 
 const SearchComponent = () => {
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
+  const primaryUser = useSelector(
+    (state: { user: TUser }) => state.user.primaryUser
+  );
+
   // handler for input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -16,12 +23,23 @@ const SearchComponent = () => {
         toast.error("Please provide a name to fetch");
         return;
       }
-      let response = await fetchUser(name);
-      if(response === "Not found"){
-        toast.error("User not found in this name")
+
+      let user = await fetchUser(name);
+
+      if (user === "Not found") {
+        toast.error("User not found with this name");
+      } else if (user && typeof user !== "string" && user.data) {
+        // Dispatch only if user is an Axios response and has data
+        console.log("first", user.data);
+        dispatch(loadPrimaryUser(user.data));
+      } else {
+        toast.error("An unexpected error occurred while fetching the user");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
   };
+
   return (
     <div className="glass-effect search-container gap-10 rounded-10 flex justify-center item-center">
       <input
