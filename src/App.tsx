@@ -7,6 +7,8 @@ import store from "./redux/store";
 import PrimaryUser from "./components/primaryUser";
 import { useState } from "react";
 
+
+
 const App = () => {
   const [selector, setSelctor] = useState(1);
   return (

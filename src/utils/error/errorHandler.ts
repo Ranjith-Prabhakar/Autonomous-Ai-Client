@@ -5,9 +5,8 @@ export default function catchAxiosError(error: unknown) {
 
   // Type assertion to check for axios error
   if (axios.isAxiosError(error)) {
-    console.log("error======", error);
     if (error.response) {
-      if (error.response.data.message === "Not Found") {
+      if (error.response.data.status === 404) {
         return "Not Found";
       }
       // Server responded with a status code outside the 2xx range

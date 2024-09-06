@@ -4,7 +4,7 @@ import { fetchUser } from "../../api/api";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { loadPrimaryUser } from "../../redux/features/user/userSlice";
-import { TSelector } from "../../types/types";
+import { TSelector } from "../../types/userType";
 
 const SearchComponent = ({ setSelctor }: TSelector) => {
   const [name, setName] = useState("");
@@ -24,7 +24,7 @@ const SearchComponent = ({ setSelctor }: TSelector) => {
 
       let user = await fetchUser(name);
 
-      if (user === "Not found") {
+      if (user === "Not Found") {
         toast.error("User not found with this name");
       } else if (user && typeof user !== "string") {
         // Dispatch only if user is an Axios response and has data

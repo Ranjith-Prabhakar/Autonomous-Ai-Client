@@ -1,1 +1,69 @@
 @import url("../../index.css");
+
+/* ======= */
+table {
+  width: 100%; /* Ensure the table takes up the full width */
+  border-collapse: collapse; /* Collapse borders into a single line */
+  color: white;
+}
+
+table, th, td {
+  border: 1px solid white; /* Adds border to table, header, and cells */
+}
+
+th, td {
+  padding: 8px; /* Padding inside each cell */
+  text-align: left; /* Align text to the left */
+  vertical-align: top; /* Aligns content at the top of each cell */
+}
+
+thead {
+  position: sticky; /* Sticky header */
+  top: 0; /* Keep the header at the top */
+  z-index: 1; /* Ensure the header is above the scrollable content */
+  background-color: inherit; /* Ensure the background color matches the rest of the table */
+}
+
+tbody {
+  display: block; /* Allows vertical scrolling */
+  height: 400px; /* Set the height of the scrollable area */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+thead tr {
+  display: table; /* Ensure the header rows take full width of the table */
+  width: 100%; /* Fix width */
+}
+
+tbody tr {
+  display: table; /* Ensure tbody rows are displayed as table rows */
+  width: 100%; /* Fix width for scrollable content */
+}
+
+tbody td {
+  display: table-cell; /* Ensure table cells are displayed as table cells */
+}
+.portal {
+  position: fixed; /* Ensure the portal covers the entire viewport */
+  top: 0;
+  left: 0;
+  z-index: 999; /* Make sure it appears above all content */
+  width: 100%;
+  height: 100%; /* Cover the full height of the viewport */
+ background: url('../../assets/minimalism-simple-gradient-soft-gradient-wallpaper-preview.jpg');
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portal-content {
+  background-color: rgba(255, 255, 255, 0.9); /* Make the content area more opaque */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for depth */
+}
+
+

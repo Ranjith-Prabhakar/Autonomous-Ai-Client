@@ -343,6 +343,16 @@
 .bg-white{background-color: white;}
 .text-black{color:black}
 .pointer{cursor: pointer;}
+.border-b-1{
+  border-bottom: 1px solid white;
+}
+.bg-red{
+  background-color: red;
+}
+.bg-disable{
+  background-color: gray;
+  opacity: 0.8;
+}
 .glass-effect {
   background: rgba(22, 21, 21, 0.521); /* Transparent background */
   box-shadow: 0 4px 30px rgba(7, 1, 1, 0.623); /* Soft shadow */
