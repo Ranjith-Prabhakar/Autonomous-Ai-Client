@@ -87,9 +87,9 @@ export async function fetchMutualFriends(
       console.log("response", response);
      setMutualFriendsFromLocalStorage(
         userName,
-        response.data.data
+        response.data.data.friends
       );
-      return response.data.data;
+      return response.data.data.friends;
     }
     return mutaualFriends;
   } catch (error: unknown) {
