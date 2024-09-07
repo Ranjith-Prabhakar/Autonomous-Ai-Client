@@ -69,12 +69,52 @@ button{
   justify-content: center;
   align-items: center;
 }
-
 .portal-content {
-  background-color: rgba(255, 255, 255, 0.9); /* Make the content area more opaque */
-  padding: 20px;
+  padding: 20px 50px;
   border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for depth */
+  background: rgba(22, 21, 21, 0.521); /* Transparent background */
+  box-shadow: 0 4px 30px rgba(7, 1, 1, 0.623); /* Soft shadow */
+  backdrop-filter: blur(1px); /* Blur the background behind the div */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Slight border */
+  color: white;
+  font-family: Poppins, sans-serif;
+  width: 60vw;
+  height: 90vh;
+  overflow-y: auto;
+  white-space: nowrap;
 }
 
+.repo-details {
+  display: flex;
+  flex-direction: column;
+}
 
+.repo-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.repo-detail-item strong {
+  flex-basis: 30%;
+  font-size: 18px;
+}
+
+.repo-detail-item span {
+  flex-basis: 70%;
+  margin-left: 25px;
+}
+
+.repo-detail-item a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+.repo-detail-item a:hover {
+  text-decoration: underline;
+}
+
+.portal-content li {
+  list-style: none;
+}

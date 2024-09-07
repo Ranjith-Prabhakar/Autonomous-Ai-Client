@@ -7,7 +7,6 @@ type Props = {
 };
 
 const RepoViewMore = ({ repo, setVisible }: Props) => {
-
   const portalRoot = document.getElementById("root-portal");
 
   if (!portalRoot) {
@@ -16,45 +15,65 @@ const RepoViewMore = ({ repo, setVisible }: Props) => {
   }
 
   return ReactDOM.createPortal(
-    <div
-      className="portal"
-      onClick={() => {
-        setVisible(false);
-      }}
-    >
-      <div className="portal-content">
-        <ul>
-          <li>
-            <strong>Repository Name:</strong> {repo.name}
-          </li>
-          <li>
-            <strong>Full Name:</strong> {repo.full_name}
-          </li>
-          <li>
-            <strong>Language:</strong> {repo.language}
-          </li>
-          <li>
-            <strong>Visibility:</strong> {repo.visibility}
-          </li>
-          <li>
-            <strong>URL:</strong>{" "}
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-              {repo.html_url}
-            </a>
-          </li>
-          <li>
-            <strong>Created At:</strong>{" "}
-            {new Date(repo.created_at).toLocaleDateString()}
-          </li>
-          <li>
-            <strong>Last Pushed At:</strong>{" "}
-            {new Date(repo.pushed_at).toLocaleDateString()}
-          </li>
-          <li>
-            <strong>Description:</strong>{" "}
-            {repo.description || "No description available"}
-          </li>
-        </ul>
+    <div className="portal">
+      <div className="portal-content flex justify-center item-center">
+        <div className="repo-details">
+          <div className="flex justify-center item-center w-full mb-25">
+            <h1 className="">Repository Details</h1>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Repository Name</strong>
+            <span style={{ marginLeft: "10px" }}>: {repo.name}</span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Full Name</strong>
+            <span>: {repo.full_name}</span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Language</strong>
+            <span>: {repo.language || "Not specified"}</span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Visibility</strong>
+            <span>: {repo.visibility}</span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>URL</strong>
+            <span>
+              {" "}
+              <a
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginLeft: "140px" }}
+              >
+                : {repo.html_url}
+              </a>
+            </span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Created At</strong>
+            <span>: {new Date(repo.created_at).toLocaleDateString()}</span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Last Pushed At</strong>
+            <span>: {new Date(repo.pushed_at).toLocaleDateString()}</span>
+          </div>
+          <div className="repo-detail-item">
+            <strong>Description</strong>
+            <span>: {repo.description || "No description available"}</span>
+          </div>
+          <div className="flex justify-center item-center w-full mt-19">
+            <button
+              className="w-half "
+              onClick={() => {
+                setVisible(false);
+              }}
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
       </div>
     </div>,
     portalRoot
