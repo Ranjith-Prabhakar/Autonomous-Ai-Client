@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./style.css";
 import useGetPrimaryUser from "../../hooks/useGetPrimaryUser";
 import { fetchFollowers, fetchMutualFriends, fetchRepo } from "../../api/api";
-import { TFollowersList } from "../../types/followersType";
 import { loadPrimaryUser } from "../../redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../api/api";
@@ -45,7 +44,6 @@ const Followers = ({ setActive }: Props) => {
       dispatch(loadPrimaryUser(user));
       let repo = await fetchRepo(
         user.login as string,
-        user.repos_url as string
       );
       dispatch(loadRepo(repo));
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { TSelector } from "../../types/userType";
 import ErrorBoundary from "../errorBoundry/ErrorBoundry";
 import SearchComponent from "../search/SearchComponent";

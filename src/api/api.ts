@@ -40,7 +40,7 @@ export async function fetchRepo(userName: string) {
 
       const response = await axios.post(`${BASE_URL}/fetchRepo`, { userName });
 
-      console.log("inside fetchRepo response", response);
+      // console.log("inside fetchRepo response", response);
 
       let newRepo = setUserRepoToLocalStorage(userName, response.data.data);
       // console.log("neeeeeeeeeeeeeeeeexxxxxxxx",newRepo[userName])
@@ -58,11 +58,17 @@ export async function fetchFollowers(userName: string, followers_url: string) {
     let followers = getUserFollowersFromLocalStorage(userName);
     if (!followers) {
       // console.log("inside fetchFollowers undefine", followers);
-      const response = await axios.get(`${followers_url}`);
-      // console.log("inside fetchFollowers response", response);
-      let newFollower = setUserFollowersToLocalStorage(userName, response.data);
+      // const response = await axios.get(`${followers_url}`);
+      const response = await axios.post(`${BASE_URL}/fetchFollowers`, {
+        userName,
+      });
+      console.log("inside fetchFollowers response", response);
+      setUserFollowersToLocalStorage(
+        userName,
+        response.data.data.followers
+      );
       // console.log("neeeeeeeeeeeeeeeeexxxxxxxx", newFollower[userName]);
-      return newFollower[userName];
+      return response.data.data.followers;
     }
     return followers as TRepo;
   } catch (error: unknown) {
