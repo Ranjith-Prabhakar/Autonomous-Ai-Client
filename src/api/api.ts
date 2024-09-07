@@ -32,19 +32,19 @@ export async function fetchUser(userName: string) {
 
 export async function fetchRepo(userName: string) {
   try {
-    // console.log("inside fetchRepo",userName,repos_url)
     let repo = getUserRepoFromLocalStorage(userName);
     if (!repo) {
-      // console.log("inside fetchRepo undefine", repo);
-      // const response = await axios.get(`${repos_url}`);
+      
 
       const response = await axios.post(`${BASE_URL}/fetchRepo`, { userName });
 
-      // console.log("inside fetchRepo response", response);
+      console.log("response", response.data.data.repositories);
 
-      let newRepo = setUserRepoToLocalStorage(userName, response.data.data);
-      // console.log("neeeeeeeeeeeeeeeeexxxxxxxx",newRepo[userName])
-      return newRepo[userName] as IGitHubRepository;
+      setUserRepoToLocalStorage(
+        userName,
+        response.data.data.repositories
+      );
+      return response.data.data.repositories as IGitHubRepository;
     }
     return repo as IGitHubRepository;
   } catch (error: unknown) {
@@ -54,20 +54,15 @@ export async function fetchRepo(userName: string) {
 
 export async function fetchFollowers(userName: string) {
   try {
-    // console.log("inside fetchFollowers", userName, followers_url);
     let followers = getUserFollowersFromLocalStorage(userName);
     if (!followers) {
-      // console.log("inside fetchFollowers undefine", followers);
-      // const response = await axios.get(`${followers_url}`);
       const response = await axios.post(`${BASE_URL}/fetchFollowers`, {
         userName,
       });
-      console.log("inside fetchFollowers response", response);
       setUserFollowersToLocalStorage(
         userName,
         response.data.data.followers
       );
-      // console.log("neeeeeeeeeeeeeeeeexxxxxxxx", newFollower[userName]);
       return response.data.data.followers;
     }
     return followers as TRepo;
@@ -82,22 +77,19 @@ export async function fetchMutualFriends(
   followersCount: string
 ) {
   try {
-    console.log("inside fetchMutualFriends", userName);
     let mutaualFriends = getMutualFriendsFromLocalStorage(userName);
     if (!mutaualFriends) {
-      console.log("inside fetchMutualFriends undefine", mutaualFriends);
       const response = await axios.post(`${BASE_URL}/fetchMutualFriends`, {
         userName,
         followingCount,
         followersCount,
       });
-      console.log("inside fetchMutualFriends response", response);
-      let newMutaualFriends = setMutualFriendsFromLocalStorage(
+      console.log("response", response);
+     setMutualFriendsFromLocalStorage(
         userName,
-        response.data.data.friends
+        response.data.data
       );
-      console.log("neeeeeeeeeeeeeeeeexxxxxxxx", newMutaualFriends[userName]);
-      return response.data.data.friends;
+      return response.data.data;
     }
     return mutaualFriends;
   } catch (error: unknown) {

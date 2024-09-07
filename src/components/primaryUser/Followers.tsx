@@ -19,7 +19,6 @@ type Props = {
 const Followers = ({ setActive }: Props) => {
   const primaryUser = useGetPrimaryUser();
   const followers = useGetFollowers();
-  // const [followersList, setFollowersList] = useState<TFollowersList>();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,11 +31,7 @@ const Followers = ({ setActive }: Props) => {
     fetchingFollowers();
   }, []);
 
-  //   useEffect(() => {
-  //  setFollowersList(followers);
-  //   }, [followers]);
 
-  //handler for submit button
   const handleChangeUser = async (name: string) => {
     try {
       let user: GitHubUser = await fetchUser(name);
@@ -56,7 +51,6 @@ const Followers = ({ setActive }: Props) => {
         user.following as unknown as string,
         user.followers as unknown as string
       );
-      console.log("mutual friends from component", mutualFriends);
       dispatch(loadMutualFriends(mutualFriends));
 
       setActive(1);

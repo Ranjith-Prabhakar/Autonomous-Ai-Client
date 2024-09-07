@@ -35,7 +35,7 @@ const followersSlice = createSlice({
   initialState,
   reducers: {
     loadFollowers: (state, action) => {
-      console.log("inside loadRepo repo slice", action.payload);
+      console.log("inside loadFollowers slice", action.payload);
       state.followers = action.payload;
     },
   },

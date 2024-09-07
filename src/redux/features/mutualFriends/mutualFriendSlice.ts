@@ -14,7 +14,7 @@ const mutualFriendsSlice = createSlice({
   initialState,
   reducers: {
     loadMutualFriends: (state, action) => {
-      console.log("inside loadMutualFriends repo slice", action.payload);
+      console.log("inside loadMutualFriends  slice", action.payload);
       state.mutualFriends = action.payload;
     },
   },

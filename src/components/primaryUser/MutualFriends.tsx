@@ -28,14 +28,12 @@ const MutualFriends = ({ setActive }: Props) => {
         primaryUser.following as unknown as string,
         primaryUser.followers as unknown as string
       );
-      console.log("mutual friends from component", mutualFriends);
       dispatch(loadMutualFriends(mutualFriends));
     }
     fetchingMutualFriends();
   }, []);
 
     useEffect(() => {
-      console.log("mutualFriends updatedddddddddddd", mutualFriends);
     }, [mutualFriends]);
 
   //handler for submit button

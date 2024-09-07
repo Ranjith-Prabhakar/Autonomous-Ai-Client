@@ -11,7 +11,6 @@ import { loadRepo } from "../../redux/features/repository/repositorySlice";
 const Repo = () => {
   const primaryUser = useGetPrimaryUser();
   const repo = useGetRepositories();
-  // const [repoList, setRepoList] = useState<TRepo>();
   const [visible, setVisible] = useState(false);
   const [viewRepo, setViewRepo] = useState<IGitHubRepository>();
   const dispatch = useDispatch();
@@ -21,16 +20,11 @@ const Repo = () => {
       let repo = await fetchRepo(
         primaryUser.login as string,
       );
-      console.log("xxxxxxxxxxxxxxx", repo);
       dispatch(loadRepo(repo));
     }
     fetchingRepo();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("reeeeeeeee", repo);
-  //   setRepoList(repo);
-  // }, [repo]);
 
   return (
     <>
