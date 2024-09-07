@@ -45,13 +45,11 @@ const MutualFriends = ({ setActive }: Props) => {
       dispatch(loadPrimaryUser(user));
       let repo = await fetchRepo(
         user.login as string,
-        user.repos_url as string
       );
       dispatch(loadRepo(repo));
 
       let followers = await fetchFollowers(
         primaryUser.login as string,
-        primaryUser.followers_url as string
       );
       dispatch(loadFollowers(followers));
 

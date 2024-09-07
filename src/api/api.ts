@@ -52,7 +52,7 @@ export async function fetchRepo(userName: string) {
   }
 }
 
-export async function fetchFollowers(userName: string, followers_url: string) {
+export async function fetchFollowers(userName: string) {
   try {
     // console.log("inside fetchFollowers", userName, followers_url);
     let followers = getUserFollowersFromLocalStorage(userName);

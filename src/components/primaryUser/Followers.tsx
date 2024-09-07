@@ -26,7 +26,6 @@ const Followers = ({ setActive }: Props) => {
     async function fetchingFollowers() {
       let followers = await fetchFollowers(
         primaryUser.login as string,
-        primaryUser.followers_url as string
       );
       dispatch(loadFollowers(followers));
     }
@@ -49,7 +48,6 @@ const Followers = ({ setActive }: Props) => {
 
       let followers = await fetchFollowers(
         user.login as string,
-        user.followers_url as string
       );
       dispatch(loadFollowers(followers));
 
