@@ -109,7 +109,7 @@ const initialState: TUserRepo = {
 };
 
 const repoSlice = createSlice({
-  name: "user",
+  name: "repo",
   initialState,
   reducers: {
     loadRepo: (state, action) => {

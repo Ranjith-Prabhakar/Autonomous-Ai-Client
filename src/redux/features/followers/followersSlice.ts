@@ -31,7 +31,7 @@ const initialState: TFollowers = {
 };
 
 const followersSlice = createSlice({
-  name: "user",
+  name: "followers",
   initialState,
   reducers: {
     loadFollowers: (state, action) => {

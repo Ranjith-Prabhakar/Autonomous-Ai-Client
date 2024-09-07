@@ -16,7 +16,9 @@ const App = () => {
       <Provider store={store}>
         {selector === 1 ? (
           <ErrorBoundary>
+            <div className="w-half">
             <SearchComponent setSelctor={setSelctor} />
+            </div>
           </ErrorBoundary>
         ) : selector === 2 ? (
           <ErrorBoundary>

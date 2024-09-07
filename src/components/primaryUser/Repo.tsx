@@ -22,7 +22,7 @@ const Repo = () => {
         primaryUser.login as string,
         primaryUser.repos_url as string
       );
-      console.log('xxxxxxxxxxxxxxx',repo)
+      console.log("xxxxxxxxxxxxxxx", repo);
       dispatch(loadRepo(repo));
     }
     fetchingRepo();
@@ -36,11 +36,17 @@ const Repo = () => {
   return (
     <>
       <div className="p-20 w-full h-full">
-        <table className="w-full border-1">
+        <table>
           <thead>
-            <th>No</th>
-            <th>Name of Project</th>
-            <th>Visit</th>
+            <tr>
+              <th>No</th>
+              <th>Name of Project</th>
+              <th>
+                <div className="flex justify-center ">
+                  <h4 className="ms-50">Visit</h4>
+                </div>
+              </th>
+            </tr>
           </thead>
           <tbody>
             {repo &&
@@ -49,8 +55,9 @@ const Repo = () => {
                   <td>{index + 1}</td>
                   <td>{item.name}</td>
                   <td>
-                    <div className="flex gap-15">
+                    <div className="flex justify-end ">
                       <button
+                        className="me-20"
                         onClick={() => {
                           setVisible(!visible);
                           setViewRepo(item);

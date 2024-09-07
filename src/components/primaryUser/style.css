@@ -3,17 +3,23 @@
 /* ======= */
 table {
   width: 100%; /* Ensure the table takes up the full width */
-  border-collapse: collapse; /* Collapse borders into a single line */
+  border-collapse: collapse;  
+  /* Collapse borders into a single line */
   color: white;
+  border-radius: 20px;
 }
 
-table, th, td {
-  border: 1px solid white; /* Adds border to table, header, and cells */
+
+tr{
+  border: .1px solid gray;
+   width: 100%;
+   display: table;
 }
 
 th, td {
   padding: 8px; /* Padding inside each cell */
-  text-align: left; /* Align text to the left */
+  text-align: left;
+   /* Align text to the left */
   vertical-align: top; /* Aligns content at the top of each cell */
 }
 
@@ -21,7 +27,7 @@ thead {
   position: sticky; /* Sticky header */
   top: 0; /* Keep the header at the top */
   z-index: 1; /* Ensure the header is above the scrollable content */
-  background-color: inherit; /* Ensure the background color matches the rest of the table */
+  background-color: #0B1921; /* Ensure the background color matches the rest of the table */
 }
 
 tbody {
@@ -30,19 +36,24 @@ tbody {
   overflow-y: auto; /* Enable vertical scrolling */
 }
 
-thead tr {
-  display: table; /* Ensure the header rows take full width of the table */
-  width: 100%; /* Fix width */
+thead th, tbody td {
+  width: calc(100% / 5); /* Adjust the width based on the number of columns */
 }
 
-tbody tr {
-  display: table; /* Ensure tbody rows are displayed as table rows */
-  width: 100%; /* Fix width for scrollable content */
+
+
+button{
+  height: 30px;
+  width: 90px;
+  border-radius: 5px;
+  border: none;
+  font: bold;
+  font-family: Poppins;
+  color: white;
+  background-color: rgb(1,28,47);
+  cursor: pointer;
 }
 
-tbody td {
-  display: table-cell; /* Ensure table cells are displayed as table cells */
-}
 .portal {
   position: fixed; /* Ensure the portal covers the entire viewport */
   top: 0;

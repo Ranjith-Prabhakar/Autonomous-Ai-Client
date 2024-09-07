@@ -1,4 +1,5 @@
 import Followers from "./Followers";
+import MutualFriends from "./MutualFriends";
 import Repo from "./Repo";
 import "./style.css";
 type Props = {
@@ -14,12 +15,13 @@ const DataTable = ({ active, setActive }: Props) => {
             ? "Repo List"
             : active === 2
             ? "Followers List"
-            : "Mutual Friendds"}
+            : "Mutual Friends"}
         </h1>
       </div>
       {/*  */}
       {active === 1 && <Repo />}
-      {active === 2 && <Followers setActive={setActive}/>}
+      {active === 2 && <Followers setActive={setActive} />}
+      {active === 3 && <MutualFriends setActive={setActive} />}
     </div>
   );
 };

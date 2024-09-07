@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./style.css";
 import useGetPrimaryUser from "../../hooks/useGetPrimaryUser";
 import { fetchFollowers, fetchMutualFriends, fetchRepo } from "../../api/api";
-import { TFollowersList } from "../../types/followersType";
 import { loadPrimaryUser } from "../../redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../api/api";
@@ -10,33 +9,34 @@ import toast from "react-hot-toast";
 import { GitHubUser } from "../../types/userType";
 import { loadRepo } from "../../redux/features/repository/repositorySlice";
 import { loadFollowers } from "../../redux/features/followers/followersSlice";
-import useGetFollowers from "../../hooks/useGetFollowers";
 import { loadMutualFriends } from "../../redux/features/mutualFriends/mutualFriendSlice";
+import useGetMutualFriends from "../../hooks/useGetMutualFriends";
 
 type Props = {
   setActive: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Followers = ({ setActive }: Props) => {
+const MutualFriends = ({ setActive }: Props) => {
   const primaryUser = useGetPrimaryUser();
-  const followers = useGetFollowers();
-  // const [followersList, setFollowersList] = useState<TFollowersList>();
+  const mutualFriends = useGetMutualFriends();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchingFollowers() {
-      let followers = await fetchFollowers(
+    async function fetchingMutualFriends() {
+      let mutualFriends = await fetchMutualFriends(
         primaryUser.login as string,
-        primaryUser.followers_url as string
+        primaryUser.following as unknown as string,
+        primaryUser.followers as unknown as string
       );
-      dispatch(loadFollowers(followers));
+      console.log("mutual friends from component", mutualFriends);
+      dispatch(loadMutualFriends(mutualFriends));
     }
-    fetchingFollowers();
+    fetchingMutualFriends();
   }, []);
 
-  //   useEffect(() => {
-  //  setFollowersList(followers);
-  //   }, [followers]);
+    useEffect(() => {
+      console.log("mutualFriends updatedddddddddddd", mutualFriends);
+    }, [mutualFriends]);
 
   //handler for submit button
   const handleChangeUser = async (name: string) => {
@@ -50,18 +50,10 @@ const Followers = ({ setActive }: Props) => {
       dispatch(loadRepo(repo));
 
       let followers = await fetchFollowers(
-        user.login as string,
-        user.followers_url as string
+        primaryUser.login as string,
+        primaryUser.followers_url as string
       );
       dispatch(loadFollowers(followers));
-
-      let mutualFriends = await fetchMutualFriends(
-        user.login as string,
-        user.following as unknown as string,
-        user.followers as unknown as string
-      );
-      console.log("mutual friends from component", mutualFriends);
-      dispatch(loadMutualFriends(mutualFriends));
 
       setActive(1);
     } catch (error) {
@@ -85,17 +77,17 @@ const Followers = ({ setActive }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {followers &&
-              followers.map((item, index) => (
-                <tr key={item.login}>
+            {mutualFriends &&
+              mutualFriends.map((item, index) => (
+                <tr key={item}>
                   <td>{index + 1}</td>
-                  <td>{item.login}</td>
+                  <td>{item}</td>
                   <td>
                     <div className="flex justify-end ">
                       <button
                         className="me-20"
                         onClick={() => {
-                          handleChangeUser(item.login);
+                          handleChangeUser(item);
                         }}
                       >
                         view more
@@ -111,4 +103,4 @@ const Followers = ({ setActive }: Props) => {
   );
 };
 
-export default Followers;
+export default MutualFriends;
