@@ -30,22 +30,19 @@ export async function fetchUser(userName: string) {
   }
 }
 
-export async function fetchRepo(userName: string, repos_url: string) {
+export async function fetchRepo(userName: string) {
   try {
     // console.log("inside fetchRepo",userName,repos_url)
     let repo = getUserRepoFromLocalStorage(userName);
     if (!repo) {
       // console.log("inside fetchRepo undefine", repo);
-      const response = await axios.get(`${repos_url}`);
+      // const response = await axios.get(`${repos_url}`);
 
-      //  const response = await axios.post(`${BASE_URL}/fetchRepo`, {
-      //    userName,
-      //    repos_url,
-      //  });
+      const response = await axios.post(`${BASE_URL}/fetchRepo`, { userName });
 
-      // console.log("inside fetchRepo response", response);
+      console.log("inside fetchRepo response", response);
 
-      let newRepo = setUserRepoToLocalStorage(userName, response.data);
+      let newRepo = setUserRepoToLocalStorage(userName, response.data.data);
       // console.log("neeeeeeeeeeeeeeeeexxxxxxxx",newRepo[userName])
       return newRepo[userName] as IGitHubRepository;
     }

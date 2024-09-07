@@ -20,7 +20,6 @@ const Repo = () => {
     async function fetchingRepo() {
       let repo = await fetchRepo(
         primaryUser.login as string,
-        primaryUser.repos_url as string
       );
       console.log("xxxxxxxxxxxxxxx", repo);
       dispatch(loadRepo(repo));
